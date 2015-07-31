@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Splash View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="SplashViewController" customModule="GeocoreTutorial1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +15,144 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Geocore Tutorial" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vX8-LT-ZWj">
+                                <rect key="frame" x="211" y="95" width="180" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DkB-9j-mW8">
+                                <rect key="frame" x="290" y="330" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="DkB-9j-mW8" secondAttribute="centerX" id="18S-qd-Squ"/>
+                            <constraint firstItem="vX8-LT-ZWj" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="75" id="7i1-Eh-7aX"/>
+                            <constraint firstAttribute="centerX" secondItem="vX8-LT-ZWj" secondAttribute="centerX" id="9P8-H7-f2e"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="DkB-9j-mW8" secondAttribute="bottom" constant="250" id="rWM-eS-Itk"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="DkB-9j-mW8" id="dys-8o-yQN"/>
+                        <segue destination="jGa-iM-5sn" kind="show" identifier="splashScreenToTabBar" id="Vwu-PV-Mjk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Map-->
+        <scene sceneID="GPS-uM-IAg">
+            <objects>
+                <viewController id="9Ou-1X-Jj2" customClass="MapViewController" customModule="GeocoreTutorial1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X6g-fu-sj3"/>
+                        <viewControllerLayoutGuide type="bottom" id="5jD-IJ-6iB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jl1-Tk-X3B">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="psM-Vi-js2">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="psM-Vi-js2" firstAttribute="top" secondItem="Jl1-Tk-X3B" secondAttribute="top" id="ahC-Gb-dzf"/>
+                            <constraint firstAttribute="bottom" secondItem="psM-Vi-js2" secondAttribute="bottom" id="eFK-pc-S0K"/>
+                            <constraint firstAttribute="trailing" secondItem="psM-Vi-js2" secondAttribute="trailing" id="oZX-rq-hTj"/>
+                            <constraint firstItem="psM-Vi-js2" firstAttribute="leading" secondItem="Jl1-Tk-X3B" secondAttribute="leading" id="vxt-wj-S6R"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="715-globe" id="LLS-yd-SIE"/>
+                    <connections>
+                        <outlet property="mapView" destination="psM-Vi-js2" id="tvC-CG-gOB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xuu-rb-sdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1930" y="5"/>
+        </scene>
+        <!--List-->
+        <scene sceneID="5pa-DC-W6r">
+            <objects>
+                <tableViewController id="xMz-aE-STQ" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="32E-af-7of">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="l2k-Vq-Sgh">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l2k-Vq-Sgh" id="Wsd-Jr-HZR">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xMz-aE-STQ" id="cB3-NU-jXV"/>
+                            <outlet property="delegate" destination="xMz-aE-STQ" id="XYR-me-jSt"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="List" image="1099-list-1" id="mcZ-qY-iTR"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jOC-Hj-vFq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2045" y="745"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="9us-ei-ZWu">
+            <objects>
+                <tableViewController id="PhG-Jr-Yak" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gdM-Lp-ZLW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="96u-Nc-2of">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="96u-Nc-2of" id="TSv-uY-3wi">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PhG-Jr-Yak" id="Q9J-lD-Mcd"/>
+                            <outlet property="delegate" destination="PhG-Jr-Yak" id="7o7-LD-P4M"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Settings" image="912-gears" id="W2q-D6-rtH"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PjB-M3-RCZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1947" y="1543"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="gqX-ku-FjM">
+            <objects>
+                <tabBarController id="jGa-iM-5sn" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="RKe-WZ-6ru">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9Ou-1X-Jj2" kind="relationship" relationship="viewControllers" id="kSV-O2-T2e"/>
+                        <segue destination="xMz-aE-STQ" kind="relationship" relationship="viewControllers" id="ANz-M9-2Jr"/>
+                        <segue destination="PhG-Jr-Yak" kind="relationship" relationship="viewControllers" id="Lg2-hd-ZAB"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hFL-2Z-mWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1112" y="335"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="1099-list-1" width="28" height="22"/>
+        <image name="715-globe" width="28" height="28"/>
+        <image name="912-gears" width="28" height="28"/>
+    </resources>
 </document>

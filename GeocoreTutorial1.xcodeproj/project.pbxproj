@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4179B8931B65CEB2004F316A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4179B8921B65CEB2004F316A /* AppDelegate.swift */; };
-		4179B8951B65CEB2004F316A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4179B8941B65CEB2004F316A /* ViewController.swift */; };
 		4179B8981B65CEB2004F316A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4179B8961B65CEB2004F316A /* Main.storyboard */; };
 		4179B89A1B65CEB2004F316A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4179B8991B65CEB2004F316A /* Images.xcassets */; };
 		4179B89D1B65CEB2004F316A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4179B89B1B65CEB2004F316A /* LaunchScreen.xib */; };
 		4179B8A91B65CEB2004F316A /* GeocoreTutorial1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4179B8A81B65CEB2004F316A /* GeocoreTutorial1Tests.swift */; };
+		4179B8B31B6600AA004F316A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4179B8B21B6600AA004F316A /* MapKit.framework */; };
+		4179B8B51B6602EA004F316A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4179B8B41B6602EA004F316A /* SplashViewController.swift */; };
+		4179B8B71B6617D2004F316A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4179B8B61B6617D2004F316A /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +31,15 @@
 		4179B88D1B65CEB2004F316A /* GeocoreTutorial1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeocoreTutorial1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4179B8911B65CEB2004F316A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4179B8921B65CEB2004F316A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4179B8941B65CEB2004F316A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4179B8971B65CEB2004F316A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4179B8991B65CEB2004F316A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4179B89C1B65CEB2004F316A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4179B8A21B65CEB2004F316A /* GeocoreTutorial1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeocoreTutorial1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4179B8A71B65CEB2004F316A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4179B8A81B65CEB2004F316A /* GeocoreTutorial1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoreTutorial1Tests.swift; sourceTree = "<group>"; };
+		4179B8B21B6600AA004F316A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4179B8B41B6602EA004F316A /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		4179B8B61B6617D2004F316A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4179B8B31B6600AA004F316A /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +64,7 @@
 		4179B8841B65CEB1004F316A = {
 			isa = PBXGroup;
 			children = (
+				4179B8B21B6600AA004F316A /* MapKit.framework */,
 				4179B88F1B65CEB2004F316A /* GeocoreTutorial1 */,
 				4179B8A51B65CEB2004F316A /* GeocoreTutorial1Tests */,
 				4179B88E1B65CEB2004F316A /* Products */,
@@ -78,11 +84,12 @@
 			isa = PBXGroup;
 			children = (
 				4179B8921B65CEB2004F316A /* AppDelegate.swift */,
-				4179B8941B65CEB2004F316A /* ViewController.swift */,
 				4179B8961B65CEB2004F316A /* Main.storyboard */,
 				4179B8991B65CEB2004F316A /* Images.xcassets */,
 				4179B89B1B65CEB2004F316A /* LaunchScreen.xib */,
 				4179B8901B65CEB2004F316A /* Supporting Files */,
+				4179B8B41B6602EA004F316A /* SplashViewController.swift */,
+				4179B8B61B6617D2004F316A /* MapViewController.swift */,
 			);
 			path = GeocoreTutorial1;
 			sourceTree = "<group>";
@@ -212,8 +219,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4179B8951B65CEB2004F316A /* ViewController.swift in Sources */,
+				4179B8B51B6602EA004F316A /* SplashViewController.swift in Sources */,
 				4179B8931B65CEB2004F316A /* AppDelegate.swift in Sources */,
+				4179B8B71B6617D2004F316A /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +417,7 @@
 				4179B8AE1B65CEB2004F316A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4179B8AF1B65CEB2004F316A /* Build configuration list for PBXNativeTarget "GeocoreTutorial1Tests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +426,7 @@
 				4179B8B11B65CEB2004F316A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
