@@ -15,6 +15,8 @@
 		4179B8B31B6600AA004F316A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4179B8B21B6600AA004F316A /* MapKit.framework */; };
 		4179B8B51B6602EA004F316A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4179B8B41B6602EA004F316A /* SplashViewController.swift */; };
 		4179B8B71B6617D2004F316A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4179B8B61B6617D2004F316A /* MapViewController.swift */; };
+		41D844841B6B60E900616293 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D844831B6B60E900616293 /* TableViewController.swift */; };
+		41D844861B6B6EAA00616293 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D844851B6B6EAA00616293 /* DataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		4179B8B21B6600AA004F316A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4179B8B41B6602EA004F316A /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		4179B8B61B6617D2004F316A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		41D844831B6B60E900616293 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		41D844851B6B6EAA00616293 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 				4179B8901B65CEB2004F316A /* Supporting Files */,
 				4179B8B41B6602EA004F316A /* SplashViewController.swift */,
 				4179B8B61B6617D2004F316A /* MapViewController.swift */,
+				41D844831B6B60E900616293 /* TableViewController.swift */,
+				41D844851B6B6EAA00616293 /* DataSource.swift */,
 			);
 			path = GeocoreTutorial1;
 			sourceTree = "<group>";
@@ -222,6 +228,8 @@
 				4179B8B51B6602EA004F316A /* SplashViewController.swift in Sources */,
 				4179B8931B65CEB2004F316A /* AppDelegate.swift in Sources */,
 				4179B8B71B6617D2004F316A /* MapViewController.swift in Sources */,
+				41D844861B6B6EAA00616293 /* DataSource.swift in Sources */,
+				41D844841B6B60E900616293 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
