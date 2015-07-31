@@ -16,18 +16,21 @@ class Place: NSObject, MKAnnotation {
     var longitude: CLLocationDegrees
     var coordinate: CLLocationCoordinate2D
     var title: String
-    var subtitle: String
+    var subtitle: String {
+        get {
+            return category()
+        }
+    }
 
-
-    init(name: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees, coordinate: CLLocationCoordinate2D, title: String, subtitle: String) {
+    init(name: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         self.name = name
-        self.title = title
-        self.subtitle = subtitle
         self.latitude = latitude
         self.longitude = longitude
-        self.coordinate = coordinate
+        self.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        self.title = name
         
         super.init()
+        
     }
     
     func pinColor() -> MKPinAnnotationColor  {
@@ -45,24 +48,31 @@ class Place: NSObject, MKAnnotation {
         return mapItem
     }
     
+    func category() -> String {
+        return "A Place"
+    }
     
 }
 
 class TrainStation: Place {
     var lineServed: String
     
-    init(name: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees, lineServed: String, title: String, subtitle: String) {
+    init(name: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees, lineServed: String) {
         self.lineServed = lineServed
-        super.init(name: name, latitude: latitude, longitude: longitude, coordinate: CLLocationCoordinate2DMake(latitude, longitude), title: title, subtitle: subtitle)
+        super.init(name: name, latitude: latitude, longitude: longitude)
+    }
+    
+    override func category() -> String {
+        return "Train Station, Line Served: \(lineServed)"
     }
 }
 
 class ConvenienceStore: Place {
     var hasAtm: Bool
     
-    init(name: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees, hasAtm: Bool, title: String, subtitle: String){
+    init(name: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees, hasAtm: Bool){
         self.hasAtm = hasAtm
-        super.init(name: name, latitude: latitude, longitude: longitude, coordinate: CLLocationCoordinate2DMake(latitude, longitude), title: title, subtitle: subtitle)
+        super.init(name: name, latitude: latitude, longitude: longitude)
     }
     
     override func pinColor() -> MKPinAnnotationColor {
@@ -70,6 +80,14 @@ class ConvenienceStore: Place {
             return .Green
         } else {
             return .Purple
+        }
+    }
+    
+    override func category() -> String {
+        if (hasAtm) {
+            return "Convenience Store, ATM Available"
+        } else {
+            return "Convenience Store, No ATM Avaliable"
         }
     }
   
@@ -85,11 +103,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
         var places: [Place] = [
-            TrainStation(name: "Aoyama Itchome", latitude: 35.672929, longitude: 139.723960, lineServed: "Oedo", title: "Aoyama Itchome", subtitle: "Train Station"),
-            TrainStation(name: "Gaienmae", latitude: 35.670527, longitude: 139.717857, lineServed: "Ginza", title: "Gaienmae", subtitle: "Train Station"),
-            TrainStation(name: "Nogizaka", latitude: 35.666572, longitude: 139.726215, lineServed: "Chiyoda", title: "Nogizaka", subtitle: "Train Station"),
-            ConvenienceStore(name: "Family Mart", latitude: 35.67265605385047, longitude: 139.7243950343933, hasAtm: true, title: "Family Mart", subtitle: "Convenience Store"),
-            ConvenienceStore(name: "Poplar", latitude: 35.6717931950933, longitude: 139.7242180085983, hasAtm: false, title: "Poplar", subtitle: "Convenience Store")
+            TrainStation(name: "Aoyama Itchome", latitude: 35.672929, longitude: 139.723960, lineServed: "Oedo"),
+            TrainStation(name: "Gaienmae", latitude: 35.670527, longitude: 139.717857, lineServed: "Ginza"),
+            TrainStation(name: "Nogizaka", latitude: 35.666572, longitude: 139.726215, lineServed: "Chiyoda"),
+            ConvenienceStore(name: "Family Mart", latitude: 35.67265605385047, longitude: 139.7243950343933, hasAtm: true),
+            ConvenienceStore(name: "Poplar", latitude: 35.6717931950933, longitude: 139.7242180085983, hasAtm: false)
         ]
         
         
