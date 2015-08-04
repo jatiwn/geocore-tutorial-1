@@ -18,7 +18,7 @@ class Place: NSObject, MKAnnotation {
     var title: String
     var subtitle: String {
         get {
-            return category()
+            return categoryDescription()
         }
     }
     
@@ -48,8 +48,16 @@ class Place: NSObject, MKAnnotation {
         return mapItem
     }
     
-    func category() -> String {
+    func categoryDescription() -> String {
         return "A Place"
+    }
+    
+    func facility() -> String {
+        return "None"
+    }
+    
+    func facilityDetails() -> String {
+        return "None"
     }
     
 }
@@ -62,8 +70,16 @@ class TrainStation: Place {
         super.init(name: name, latitude: latitude, longitude: longitude)
     }
     
-    override func category() -> String {
-        return "Train Station, Line Served: \(lineServed)"
+    override func categoryDescription() -> String {
+        return "Train Station"
+    }
+    
+    override func facility() -> String {
+        return "Line"
+    }
+    
+    override func facilityDetails() -> String {
+        return lineServed
     }
 }
 
@@ -83,11 +99,19 @@ class ConvenienceStore: Place {
         }
     }
     
-    override func category() -> String {
-        if (hasAtm) {
-            return "Convenience Store, ATM Available"
+    override func categoryDescription() -> String {
+            return "Convenience Store"
+    }
+    
+    override func facility() -> String {
+        return "ATM"
+    }
+    
+    override func facilityDetails() -> String {
+        if (hasAtm){
+            return "Yes"
         } else {
-            return "Convenience Store, No ATM Avaliable"
+            return "No"
         }
     }
     

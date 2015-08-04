@@ -17,6 +17,7 @@
 		4179B8B71B6617D2004F316A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4179B8B61B6617D2004F316A /* MapViewController.swift */; };
 		41D844841B6B60E900616293 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D844831B6B60E900616293 /* TableViewController.swift */; };
 		41D844861B6B6EAA00616293 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D844851B6B6EAA00616293 /* DataSource.swift */; };
+		41D844881B6F3BC800616293 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D844871B6F3BC800616293 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		4179B8B61B6617D2004F316A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		41D844831B6B60E900616293 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		41D844851B6B6EAA00616293 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		41D844871B6F3BC800616293 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				4179B8B61B6617D2004F316A /* MapViewController.swift */,
 				41D844831B6B60E900616293 /* TableViewController.swift */,
 				41D844851B6B6EAA00616293 /* DataSource.swift */,
+				41D844871B6F3BC800616293 /* DetailsViewController.swift */,
 			);
 			path = GeocoreTutorial1;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				4179B8B71B6617D2004F316A /* MapViewController.swift in Sources */,
 				41D844861B6B6EAA00616293 /* DataSource.swift in Sources */,
 				41D844841B6B60E900616293 /* TableViewController.swift in Sources */,
+				41D844881B6F3BC800616293 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

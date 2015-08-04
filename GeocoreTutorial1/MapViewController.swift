@@ -12,6 +12,7 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+    var selectedPlace: Place?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,23 +56,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     
-    
-    func setCenterCoordinate(coordinate: CLLocationCoordinate2D ,
-        animated: Bool){
-        var centerCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(0, 0)
-          
-    }
-    
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if let annotation = annotation as? Place {
             let identifier = "pin"
             var view: MKPinAnnotationView
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
-                as? MKPinAnnotationView { // 2
+                as? MKPinAnnotationView {
                     dequeuedView.annotation = annotation
                     view = dequeuedView
             } else {
-                // 3
+                
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
@@ -87,11 +81,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        let location = view.annotation as! Place
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        location.mapItem().openInMapsWithLaunchOptions(launchOptions)
+        if control == view.rightCalloutAccessoryView {
+            self.selectedPlace = view.annotation as? Place
+            performSegueWithIdentifier("showDetailsFromMap", sender: self)
+        }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetailsFromMap" {
+            var detailsVC: DetailsViewController = segue.destinationViewController as! DetailsViewController
+            
+            var annotation: MKAnnotation!
+    
+            detailsVC.place = selectedPlace
+            
+        }
+        
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
