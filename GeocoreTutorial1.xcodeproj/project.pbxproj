@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4142510B1B71A34600A138BE /* map_app_data-jati.en.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4142510A1B71A34600A138BE /* map_app_data-jati.en.csv */; };
+		41146D161B71CF8A00BDAE89 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41146D151B71CF8A00BDAE89 /* SwiftCSV.framework */; };
+		4142510B1B71A34600A138BE /* map_app_data-jati_en.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4142510A1B71A34600A138BE /* map_app_data-jati_en.csv */; };
 		4179B8931B65CEB2004F316A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4179B8921B65CEB2004F316A /* AppDelegate.swift */; };
 		4179B8981B65CEB2004F316A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4179B8961B65CEB2004F316A /* Main.storyboard */; };
 		4179B89A1B65CEB2004F316A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4179B8991B65CEB2004F316A /* Images.xcassets */; };
@@ -32,7 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4142510A1B71A34600A138BE /* map_app_data-jati.en.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "map_app_data-jati.en.csv"; path = "GeocoreTutorial1/Resources/map_app_data-jati.en.csv"; sourceTree = "<group>"; };
+		41146D151B71CF8A00BDAE89 /* SwiftCSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCSV.framework; path = Carthage/Build/iOS/SwiftCSV.framework; sourceTree = "<group>"; };
+		4142510A1B71A34600A138BE /* map_app_data-jati_en.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "map_app_data-jati_en.csv"; path = "GeocoreTutorial1/Resources/map_app_data-jati_en.csv"; sourceTree = "<group>"; };
 		4179B88D1B65CEB2004F316A /* GeocoreTutorial1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeocoreTutorial1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4179B8911B65CEB2004F316A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4179B8921B65CEB2004F316A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4179B8B31B6600AA004F316A /* MapKit.framework in Frameworks */,
+				41146D161B71CF8A00BDAE89 /* SwiftCSV.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +75,7 @@
 		414251091B71A32C00A138BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4142510A1B71A34600A138BE /* map_app_data-jati.en.csv */,
+				4142510A1B71A34600A138BE /* map_app_data-jati_en.csv */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -80,6 +83,7 @@
 		4179B8841B65CEB1004F316A = {
 			isa = PBXGroup;
 			children = (
+				41146D151B71CF8A00BDAE89 /* SwiftCSV.framework */,
 				414251091B71A32C00A138BE /* Resources */,
 				4179B8B21B6600AA004F316A /* MapKit.framework */,
 				4179B88F1B65CEB2004F316A /* GeocoreTutorial1 */,
@@ -149,6 +153,7 @@
 				4179B8891B65CEB2004F316A /* Sources */,
 				4179B88A1B65CEB2004F316A /* Frameworks */,
 				4179B88B1B65CEB2004F316A /* Resources */,
+				41146D171B71CFC600BDAE89 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -222,7 +227,7 @@
 				4179B8981B65CEB2004F316A /* Main.storyboard in Resources */,
 				4179B89D1B65CEB2004F316A /* LaunchScreen.xib in Resources */,
 				4179B89A1B65CEB2004F316A /* Images.xcassets in Resources */,
-				4142510B1B71A34600A138BE /* map_app_data-jati.en.csv in Resources */,
+				4142510B1B71A34600A138BE /* map_app_data-jati_en.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +239,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		41146D171B71CFC600BDAE89 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftCSV.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4179B8891B65CEB2004F316A /* Sources */ = {
@@ -372,6 +394,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GeocoreTutorial1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -382,6 +408,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GeocoreTutorial1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

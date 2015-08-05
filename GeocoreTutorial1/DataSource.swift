@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import AddressBook
+import SwiftCSV
 
 class Place: NSObject, MKAnnotation {
     var name: String
@@ -117,10 +118,56 @@ class ConvenienceStore: Place {
     
 }
 
+
+
 class DataSource: NSObject {
     
     static let sharedInstance = DataSource()
+    var places: [Place] = []
+    override init(){
+        super.init()
+        self.importData()
+    }
     
+    func importData() -> [Place] {
+        self.places = []
+        
+        
+        if let url = NSBundle.mainBundle().URLForResource("map_app_data-jati_en", withExtension: "csv") {
+            var error: NSErrorPointer = nil
+       
+            if let csv = CSV(contentsOfURL: url, error: error) {
+                
+                print(csv.rows.count)
+                
+                for placeDict in csv.rows {
+                    let placeName = placeDict["name"]
+
+                    let placeLatitude = NSString(string: placeDict["latitude"]!).doubleValue
+                    let placeLongitude = NSString(string: placeDict["longitude"]!).doubleValue
+                    
+                    let placeDetails = placeDict["facility_details"]
+                    
+                    if placeDetails == "Yes" {
+                        let placeAtm = true
+                        self.places.append(ConvenienceStore(name: placeName!, latitude: placeLatitude, longitude: placeLongitude, hasAtm: placeAtm))
+                    } else if placeDetails == "No" {
+                        let placeAtm = false
+                        self.places.append(ConvenienceStore(name: placeName!, latitude: placeLatitude, longitude: placeLongitude, hasAtm: placeAtm))
+                    } else {
+                        self.places.append(TrainStation(name: placeName!, latitude: placeLatitude, longitude: placeLongitude, lineServed: placeDetails!))
+                    }
+                
+                }
+                
+                
+            }
+        }
+        return places
+    }
+
+    
+    /*
     let places = [
         TrainStation(name: "Aoyama Itchome", latitude: 35.672929, longitude: 139.723960, lineServed: "Oedo"),
         TrainStation(name: "Gaienmae", latitude: 35.670527, longitude: 139.717857, lineServed: "Ginza"),
@@ -128,7 +175,7 @@ class DataSource: NSObject {
         ConvenienceStore(name: "Family Mart", latitude: 35.67265605385047, longitude: 139.7243950343933, hasAtm: true),
         ConvenienceStore(name: "Poplar", latitude: 35.6717931950933, longitude: 139.7242180085983, hasAtm: false)
     ]
-    
-    
+    */
+
 }
 
