@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4142510B1B71A34600A138BE /* map_app_data-jati.en.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4142510A1B71A34600A138BE /* map_app_data-jati.en.csv */; };
 		4179B8931B65CEB2004F316A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4179B8921B65CEB2004F316A /* AppDelegate.swift */; };
 		4179B8981B65CEB2004F316A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4179B8961B65CEB2004F316A /* Main.storyboard */; };
 		4179B89A1B65CEB2004F316A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4179B8991B65CEB2004F316A /* Images.xcassets */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4142510A1B71A34600A138BE /* map_app_data-jati.en.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "map_app_data-jati.en.csv"; path = "GeocoreTutorial1/Resources/map_app_data-jati.en.csv"; sourceTree = "<group>"; };
 		4179B88D1B65CEB2004F316A /* GeocoreTutorial1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeocoreTutorial1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4179B8911B65CEB2004F316A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4179B8921B65CEB2004F316A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,9 +69,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		414251091B71A32C00A138BE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4142510A1B71A34600A138BE /* map_app_data-jati.en.csv */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		4179B8841B65CEB1004F316A = {
 			isa = PBXGroup;
 			children = (
+				414251091B71A32C00A138BE /* Resources */,
 				4179B8B21B6600AA004F316A /* MapKit.framework */,
 				4179B88F1B65CEB2004F316A /* GeocoreTutorial1 */,
 				4179B8A51B65CEB2004F316A /* GeocoreTutorial1Tests */,
@@ -211,6 +222,7 @@
 				4179B8981B65CEB2004F316A /* Main.storyboard in Resources */,
 				4179B89D1B65CEB2004F316A /* LaunchScreen.xib in Resources */,
 				4179B89A1B65CEB2004F316A /* Images.xcassets in Resources */,
+				4142510B1B71A34600A138BE /* map_app_data-jati.en.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

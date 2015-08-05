@@ -44,6 +44,23 @@
             </objects>
         </scene>
         <!--Map-->
+        <scene sceneID="AZz-Yq-5gF">
+            <objects>
+                <navigationController id="Lgf-89-maq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="715-globe" id="BT4-Oy-T38"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hGP-nW-8ah">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9Ou-1X-Jj2" kind="relationship" relationship="rootViewController" id="mLg-bl-wUx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7pD-Ny-cI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1057" y="130"/>
+        </scene>
+        <!--Map-->
         <scene sceneID="GPS-uM-IAg">
             <objects>
                 <viewController id="9Ou-1X-Jj2" customClass="MapViewController" customModule="GeocoreTutorial1" customModuleProvider="target" sceneMemberID="viewController">
@@ -68,6 +85,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="715-globe" id="LLS-yd-SIE"/>
+                    <navigationItem key="navigationItem" id="NZm-tF-PmQ"/>
                     <connections>
                         <outlet property="mapView" destination="psM-Vi-js2" id="tvC-CG-gOB"/>
                         <segue destination="bIi-Uv-EIX" kind="show" identifier="showDetailsFromMap" id="FZc-qA-geu"/>
@@ -240,7 +258,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9Ou-1X-Jj2" kind="relationship" relationship="viewControllers" id="kSV-O2-T2e"/>
+                        <segue destination="Lgf-89-maq" kind="relationship" relationship="viewControllers" id="yam-Se-McY"/>
                         <segue destination="YCW-re-oRU" kind="relationship" relationship="viewControllers" id="OxJ-dh-BKm"/>
                         <segue destination="PhG-Jr-Yak" kind="relationship" relationship="viewControllers" id="5jZ-Fe-DLx"/>
                     </connections>

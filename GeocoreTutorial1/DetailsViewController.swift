@@ -50,7 +50,7 @@ class DetailsViewController: UIViewController, MKMapViewDelegate, UITableViewDat
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as! UIView
+                
             }
             
             view.pinColor = annotation.pinColor()
@@ -73,14 +73,6 @@ class DetailsViewController: UIViewController, MKMapViewDelegate, UITableViewDat
         
         return infoDetailToShow
     }
-    
-    
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        let location = view.annotation as! Place
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        location.mapItem().openInMapsWithLaunchOptions(launchOptions)
-    }
-    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
