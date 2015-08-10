@@ -36,5 +36,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>GeocoreBaseURL</key>
+	<string>http://dev1.geocore.jp/api</string>
+	<key>GeocoreProjectId</key>
+	<string>PRO-TEST-1</string>
 </dict>
 </plist>

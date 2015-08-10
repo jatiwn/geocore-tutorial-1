@@ -8,53 +8,76 @@
 
 import UIKit
 import MapKit
+import PromiseKit
+import GeocoreKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     var selectedPlace: Place?
+    var maxLat: Double?
+    var minLat: Double?
+    var maxLon: Double?
+    var minLon: Double?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var maxLatitude: CLLocationDegrees = -90
-        var minLatitude: CLLocationDegrees = 90
-        var sumLatitude: CLLocationDegrees = 0
-        var maxLongitude: CLLocationDegrees = -180
-        var minLongitude: CLLocationDegrees = 180
-        var sumLongitude: CLLocationDegrees = 0
-        
-        for place in DataSource.sharedInstance.places {
-            if place.latitude > maxLatitude {
-                maxLatitude = place.latitude
-            } else if place.latitude < minLatitude {
-                minLatitude = place.latitude
-            }
             
-            if place.longitude > maxLongitude {
-                maxLongitude = place.longitude
-            } else if place.longitude < minLongitude {
-                minLongitude = place.longitude
-            }
+        var region: MKCoordinateRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(35.658581, 139.745433), MKCoordinateSpanMake(0.1, 0.1))
             
-            sumLatitude += place.latitude
-            sumLongitude += place.longitude
- 
+        self.mapView.setRegion(region, animated: true)
             
-        }
+        self.mapView.delegate = self
         
-        let numberOfPlaces = Double(DataSource.sharedInstance.places.count)
-        
-        var region: MKCoordinateRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(sumLatitude/numberOfPlaces, sumLongitude/numberOfPlaces), MKCoordinateSpanMake((maxLatitude - minLatitude)*3, (maxLongitude - minLongitude)*3))
-        
-        mapView.setRegion(region, animated: true)
-        
-        mapView.addAnnotations(DataSource.sharedInstance.places)
-        
-        mapView.delegate = self
-        
+        self.currentViewCoordinate()
     }
 
+    func currentViewCoordinate() -> (maxLat: Double, minLat: Double, maxLon: Double, minLon: Double) {
+        var currentRegion = mapView.region
+        var currentCenterLatitude = currentRegion.center.latitude
+        var currentCenterLongitude = currentRegion.center.longitude
+        var currentLatitudeDelta = currentRegion.span.latitudeDelta
+        var currentLongitudeDelta = currentRegion.span.longitudeDelta
+        maxLat = currentCenterLatitude + (currentLatitudeDelta/2)
+        minLat = currentCenterLatitude - (currentLatitudeDelta/2)
+        maxLon = currentCenterLongitude + (currentLongitudeDelta/2)
+        minLon = currentCenterLongitude - (currentLongitudeDelta/2)
+        
+        return (maxLat!, minLat!, maxLon!, minLon!)
+    }
+    
+    func mapViewDidFinishLoadingMap(mapView: MKMapView){
+        
+        DataSource.sharedInstance.getData(minLat!, minLon: minLon!, maxLat: maxLat!, maxLon: maxLon!) .then { (places:[Place]) -> Void in
+            
+            for place in places {
+                print("name = \(place.name), latitude = \(place.latitude), longitude = \(place.longitude)")
+                
+            }
+            DataSource.sharedInstance.places = places
+            self.mapView.addAnnotations(places)
+
+        }
+    }
+    
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        self.currentViewCoordinate()
+        DataSource.sharedInstance.getData(minLat!, minLon: minLon!, maxLat: maxLat!, maxLon: maxLon!) .then { (places:[Place]) -> Void in
+            
+            for place in places {
+                print("name = \(place.name), latitude = \(place.latitude), longitude = \(place.longitude)")
+                
+            }
+            
+            let annotationsToRemove = mapView.annotations
+            mapView.removeAnnotations( annotationsToRemove )
+            DataSource.sharedInstance.places = places
+            self.mapView.addAnnotations(places)
+            
+        }
+            
+    }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if let annotation = annotation as? Place {

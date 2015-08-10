@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GeocoreKit
 
 class SplashViewController: UIViewController {
     
@@ -20,7 +21,10 @@ class SplashViewController: UIViewController {
         
         self.activityIndicator.startAnimating()
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: Selector("segueTrigger"), userInfo: nil, repeats: false)
+        Geocore.sharedInstance.loginWithDefaultUser().then { accessToken -> Void in
+            self.segueTrigger()
+            println("Logged in to Geocore successfully, with access token = \(accessToken)")
+        }
         
     }
     

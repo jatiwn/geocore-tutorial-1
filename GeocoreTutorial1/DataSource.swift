@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 import AddressBook
 import SwiftCSV
+import GeocoreKit
+import PromiseKit
 
 class Place: NSObject, MKAnnotation {
     var name: String
@@ -124,21 +126,70 @@ class DataSource: NSObject {
     
     static let sharedInstance = DataSource()
     var places: [Place] = []
-    override init(){
-        super.init()
-        self.importData()
-    }
     
-    func importData() -> [Place] {
-        self.places = []
+    
+    func getData(minLat: Double, minLon: Double, maxLat: Double, maxLon: Double) -> Promise<[Place]> {
+        return GeocorePlace
+            .get(minLat: minLat, minLon: minLon, maxLat: maxLat, maxLon: maxLon)
+            .then {
+                (geocorePlaces: [GeocorePlace]) -> Promise<[Place]> in
+                var places: [Place] = []
+                println("--- Some places as promised:")
+                for place in geocorePlaces {
+                    var point = place.point ?? GeocorePoint(latitude: 0, longitude: 0)
+                    places.append(Place(
+                        name: place.name ?? "",
+                        latitude: Double(point.latitude!),
+                        longitude: Double(point.longitude!)))
+                }
+                return Promise(places)
+            }
         
+        /*
+        return Promise { fulfill, reject in
+            GeocorePlace
+                .get(minLat: 35.66617440081799, minLon: 139.7126117348629, maxLat: 35.67753978462231, maxLon: 139.72917705773887)
+                .then { (geocorePlaces: [GeocorePlace]) -> Void in
+                    var places: [Place] = []
+                    println("--- Some places as promised:")
+                    for place in geocorePlaces {
+                        places.append(Place(name: place.name!, latitude: Double(place.point!.latitude!), longitude: Double(place.point!.longitude!)))
+                        
+                        println("Id = \(place.id), Name = \(place.name), Point = (\(place.point?.latitude), \(place.point?.longitude))")
+                    }
+                    fulfill(places)
+                }
+        }
+        */
+    }
+    /*
+    func importData() -> Promise<[Place]> {
+        
+        return Promise { fulfill, reject in
+            self.places = []
+            
+            GeocorePlace
+                .get(minLat: 35, minLon: 139, maxLat: 36, maxLon: 140)
+                .then { (places: [GeocorePlace]) -> Void in
+                    println("--- Some places as promised:")
+                    for place in places {
+                        self.places.append(Place(name: place.name!, latitude: Double(place.point!.latitude!), longitude: Double(place.point!.longitude!)))
+                        
+                        println("Id = \(place.id), Name = \(place.name), Point = (\(place.point?.latitude), \(place.point?.longitude))")
+                    }
+                    
+            }
+            fulfill (Place())
+
+        }
+        
+        
+        self.places = []
         
         if let url = NSBundle.mainBundle().URLForResource("map_app_data-jati_en", withExtension: "csv") {
             var error: NSErrorPointer = nil
        
             if let csv = CSV(contentsOfURL: url, error: error) {
-                
-                print(csv.rows.count)
                 
                 for placeDict in csv.rows {
                     let placeName = placeDict["name"]
@@ -164,8 +215,10 @@ class DataSource: NSObject {
             }
         }
         return places
+        
+        
     }
-
+    */
     
     /*
     let places = [
