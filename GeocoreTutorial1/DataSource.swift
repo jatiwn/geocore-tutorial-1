@@ -63,6 +63,7 @@ class Place: NSObject, MKAnnotation {
         return "None"
     }
     
+    
 }
 
 class TrainStation: Place {
@@ -125,8 +126,6 @@ class ConvenienceStore: Place {
 class DataSource: NSObject {
     
     static let sharedInstance = DataSource()
-    var places: [Place] = []
-    
     
     func getData(minLat: Double, minLon: Double, maxLat: Double, maxLon: Double) -> Promise<[Place]> {
         return GeocorePlace
@@ -134,7 +133,7 @@ class DataSource: NSObject {
             .then {
                 (geocorePlaces: [GeocorePlace]) -> Promise<[Place]> in
                 var places: [Place] = []
-                println("--- Some places as promised:")
+                //println("--- Some places as promised:")
                 for place in geocorePlaces {
                     var point = place.point ?? GeocorePoint(latitude: 0, longitude: 0)
                     places.append(Place(
@@ -144,91 +143,24 @@ class DataSource: NSObject {
                 }
                 return Promise(places)
             }
-        
-        /*
-        return Promise { fulfill, reject in
-            GeocorePlace
-                .get(minLat: 35.66617440081799, minLon: 139.7126117348629, maxLat: 35.67753978462231, maxLon: 139.72917705773887)
-                .then { (geocorePlaces: [GeocorePlace]) -> Void in
-                    var places: [Place] = []
-                    println("--- Some places as promised:")
-                    for place in geocorePlaces {
-                        places.append(Place(name: place.name!, latitude: Double(place.point!.latitude!), longitude: Double(place.point!.longitude!)))
-                        
-                        println("Id = \(place.id), Name = \(place.name), Point = (\(place.point?.latitude), \(place.point?.longitude))")
-                    }
-                    fulfill(places)
-                }
-        }
-        */
     }
-    /*
-    func importData() -> Promise<[Place]> {
-        
-        return Promise { fulfill, reject in
-            self.places = []
-            
-            GeocorePlace
-                .get(minLat: 35, minLon: 139, maxLat: 36, maxLon: 140)
-                .then { (places: [GeocorePlace]) -> Void in
-                    println("--- Some places as promised:")
-                    for place in places {
-                        self.places.append(Place(name: place.name!, latitude: Double(place.point!.latitude!), longitude: Double(place.point!.longitude!)))
-                        
-                        println("Id = \(place.id), Name = \(place.name), Point = (\(place.point?.latitude), \(place.point?.longitude))")
-                    }
-                    
-            }
-            fulfill (Place())
-
-        }
-        
-        
-        self.places = []
-        
-        if let url = NSBundle.mainBundle().URLForResource("map_app_data-jati_en", withExtension: "csv") {
-            var error: NSErrorPointer = nil
-       
-            if let csv = CSV(contentsOfURL: url, error: error) {
-                
-                for placeDict in csv.rows {
-                    let placeName = placeDict["name"]
-
-                    let placeLatitude = NSString(string: placeDict["latitude"]!).doubleValue
-                    let placeLongitude = NSString(string: placeDict["longitude"]!).doubleValue
-                    
-                    let placeDetails = placeDict["facility_details"]
-                    
-                    if placeDetails == "Yes" {
-                        let placeAtm = true
-                        self.places.append(ConvenienceStore(name: placeName!, latitude: placeLatitude, longitude: placeLongitude, hasAtm: placeAtm))
-                    } else if placeDetails == "No" {
-                        let placeAtm = false
-                        self.places.append(ConvenienceStore(name: placeName!, latitude: placeLatitude, longitude: placeLongitude, hasAtm: placeAtm))
-                    } else {
-                        self.places.append(TrainStation(name: placeName!, latitude: placeLatitude, longitude: placeLongitude, lineServed: placeDetails!))
-                    }
-                
-                }
-                
-                
-            }
-        }
-        return places
-        
-        
-    }
-    */
     
-    /*
-    let places = [
-        TrainStation(name: "Aoyama Itchome", latitude: 35.672929, longitude: 139.723960, lineServed: "Oedo"),
-        TrainStation(name: "Gaienmae", latitude: 35.670527, longitude: 139.717857, lineServed: "Ginza"),
-        TrainStation(name: "Nogizaka", latitude: 35.666572, longitude: 139.726215, lineServed: "Chiyoda"),
-        ConvenienceStore(name: "Family Mart", latitude: 35.67265605385047, longitude: 139.7243950343933, hasAtm: true),
-        ConvenienceStore(name: "Poplar", latitude: 35.6717931950933, longitude: 139.7242180085983, hasAtm: false)
-    ]
-    */
+    func getNearestPlaces(centerLat: Double, centerLon: Double) -> Promise<[Place]> {
+        return GeocorePlace
+            .get(centerLat: centerLat, centerLon: centerLon)
+            .then { (geocorePlaces: [GeocorePlace]) -> Promise <[Place]> in
+                var places: [Place] = []
+                //println("--- Some places as promised:")
+                for place in geocorePlaces {
+                    var point = place.point ?? GeocorePoint(latitude: 0, longitude: 0)
+                    places.append(Place(
+                        name: place.name ?? "",
+                        latitude: Double(point.latitude!),
+                        longitude: Double(point.longitude!)))
+                }
+                return Promise(places)
+        }
+    }
 
 }
 

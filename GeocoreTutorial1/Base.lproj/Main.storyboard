@@ -72,7 +72,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="psM-Vi-js2">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="psM-Vi-js2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
                         </subviews>
@@ -85,7 +85,21 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="715-globe" id="LLS-yd-SIE"/>
-                    <navigationItem key="navigationItem" id="NZm-tF-PmQ"/>
+                    <navigationItem key="navigationItem" id="NZm-tF-PmQ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="C8h-25-Hh4">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="men-D3-8cf">
+                                <rect key="frame" x="-23" y="-15" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="Current Location">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="currentLocationButton:" destination="9Ou-1X-Jj2" eventType="touchUpInside" id="U1W-lx-l77"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="psM-Vi-js2" id="tvC-CG-gOB"/>
                         <segue destination="bIi-Uv-EIX" kind="show" identifier="showDetailsFromMap" id="FZc-qA-geu"/>
@@ -274,6 +288,6 @@
         <image name="912-gears" width="28" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RHO-E3-8dg"/>
+        <segue reference="FZc-qA-geu"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,14 +8,16 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class DetailsViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate {
+class DetailsViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
 
 
     @IBOutlet weak var detailsMapView: MKMapView!
     @IBOutlet weak var detailsTableView: UITableView!
     
     var place: Place?
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,16 @@ class DetailsViewController: UIViewController, MKMapViewDelegate, UITableViewDat
         
         detailsTableView.dataSource = self
         detailsTableView.delegate = self
+        
+        self.locationManager.delegate = self
+        
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        self.locationManager.distanceFilter = kCLDistanceFilterNone
+        
+        CLLocationManager.locationServicesEnabled()
+        
+        self.locationManager.startUpdatingLocation()
         
     }
 
@@ -49,7 +61,7 @@ class DetailsViewController: UIViewController, MKMapViewDelegate, UITableViewDat
                 
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.calloutOffset = CGPoint(x: -8, y: 2)
                 
             }
             
@@ -60,16 +72,20 @@ class DetailsViewController: UIViewController, MKMapViewDelegate, UITableViewDat
         return nil
     }
     
+    func calculatePlaceDistance(latitude: Double, longitude: Double) -> Double {
+        let place = CLLocation(latitude: latitude, longitude: longitude)
+        let placeDistance: Double = locationManager.location.distanceFromLocation(place)
+        return placeDistance
+    }
     
     func infoCategoryShowing() -> [String] {
-        var infoCategoryToShow = ["Name", "Type", place!.facility()]
+        var infoCategoryToShow = ["Name", "Category", "Distance"]
         
         return infoCategoryToShow
     }
     
-    
     func infoDetailShowing() -> [String] {
-        var infoDetailToShow = [place!.name, place!.categoryDescription(), place!.facilityDetails()]
+        var infoDetailToShow = [place!.name, place!.categoryDescription(), String(format: "%.2f kilometers", (self.calculatePlaceDistance(place!.latitude, longitude: place!.longitude))/1000)]
         
         return infoDetailToShow
     }

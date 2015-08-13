@@ -40,5 +40,7 @@
 	<string>http://dev1.geocore.jp/api</string>
 	<key>GeocoreProjectId</key>
 	<string>PRO-TEST-1</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The application has to know your location.</string>
 </dict>
 </plist>
